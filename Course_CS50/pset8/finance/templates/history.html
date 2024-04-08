@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+<h4>{{ username }}'s history buy/sell of cashes</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-start">Company</th>
+            <th class="text-start">Symbol</th>
+            <th class="text-start">Buy</th>
+            <th class="text-end">Sell</th>
+            <th class="text-end">Price</th>
+            <th class="text-end">Summ</th>
+            <th class="text-end">Cash</th>
+            <th class="text-end">Date/time</th>
+        </tr>
+    </thead>
+   <tbody>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row['company'] }}</td>
+        <td>{{ row['symbol'] }}</td>
+        <td>{{ row['buy'] }}</td>
+        <td>{{ row['sell'] }}</td>
+        <td>{{ "%.2f"|format(row.price) }}</td>
+        <td>{{ "%.2f"|format(row.summ) }}</td>
+        <td>{{ "%.2f"|format(row.cash) }}</td>
+        <td>{{ row['date'] }}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+    <caption>{{ current_time }}</caption>
+</table>
+
+{% endblock %}

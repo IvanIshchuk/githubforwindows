@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form id="register-form" action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id="username-input" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#register-form").submit(function (event) {
+                // Перешкоджаємо дії за умовчанням подання форми
+                event.preventDefault();
+
+                // Отримуємо значення введеного імені користувача
+                var username = $("input[name='username']").val();
+                if (username.trim() === '') {
+            // Якщо поле порожнє, виводимо повідомлення та виходимо з функції
+                    alert("Please enter a username.");
+                    return;
+                }
+
+                // Виконуємо Ajax-запит на перевірку доступності імені користувача
+                //$.get("/check/" + username, function (data) {
+                $.get("/check", { username: username }, function(data) {
+                    // Перевіряємо результат, отриманий від сервера
+                    if (data === true) {
+                        // Ім'я користувача доступне, відправляємо форму
+                        $("#register-form").unbind('submit').submit();
+                    } else {
+                        // Ім'я користувача вже зайняте, виводимо повідомлення
+                        alert("This username is already taken.");
+                    }
+                });
+            });
+        })
+    </script>
+{% endblock %}

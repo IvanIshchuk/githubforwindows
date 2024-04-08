@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<h4>Current general state {{ username }}'s account</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-start">Company</th>
+            <th class="text-start">Symbol</th>
+            <th class="text-end">Amount</th>
+            <th class="text-start">Current price</th>
+            <th class="text-end">Summ</th>
+        </tr>
+    </thead>
+   <tbody>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row['company'] }}</td>
+        <td>{{ row['symbol'] }}</td>
+        <td>{{ row['total_amount'] }}</td>
+        <td>{{ row['current_price'] }}</td>
+        <td>{{ "%.2f"|format(row.summ) }}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+            <td class="border-0 text-end">{{ '%.2f' | format(cash) }}</td>
+        </tr>
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+            <td class="border-0 w-bold text-end">{{ '%.2f' | format(total) }}</td>
+        </tr>
+    </tfoot>
+    <caption>{{ current_time }}</caption>
+</table>
+
+{% endblock %}

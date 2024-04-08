@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<h4>{{ username }}'s account is {{ cash }} USD</h4>
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-sm" min="1" name="shares" placeholder="Shares" type="number" style="width: 200px;">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Buy</button>
+    </form>
+
+    <p>Click if you want add cash</p>
+    <form action="/add" method="get">
+        <button class="btn btn-primary" type="submit">Add cash</button>
+    </form>
+{% endblock %}

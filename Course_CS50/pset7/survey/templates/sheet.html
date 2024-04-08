@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div class="jumbotron">
+        <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+        <h1 class="mb-3">Table of registration</h1>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Car</th>
+                <th>Color</th>
+                <th>Person</th>
+                <th>Dog</th>
+                <th>Cat</th>
+                <th>Others</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td scope="row">{{ row[0] }}</td>
+                    <td scope="row">{{ row[1] }}</td>
+                    <td scope="row">{{ row[2] }}</td>
+                    <td scope="row">{{ row[3] }}</td>
+                    <td scope="row">{{ row[4] }}</td>
+                    <td scope="row">{{ row[5] }}</td>
+                    <td scope="row">{{ row[6] }}</td>
+                    <td scope="row">{{ row[7] }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

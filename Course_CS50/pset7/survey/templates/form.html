@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div class="jumbotron">
+        <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+        <h1 class="mb-3">Registration form</h1>
+    </div>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/form" method="post">
+
+        <div class="form-group">
+            <input autocomplete="off" autofocus name="firstname" placeholder="First name" type="text">
+            <input autocomplete="off" autofocus name="lastname" placeholder="Last name" type="text">
+        </div>
+        <div class="form-group">
+            <select name="car">
+                <option disabled selected value="">Car</option>
+                <option value="BMW">BMW</option>
+                <option value="Niassan">Niassan</option>
+                <option value="Mazda">Mazda</option>
+                <option value="Audi">Audi</option>
+                <option value="Ford">Ford</option>
+                <option value="Chevrolet">Chevrolet</option>
+           </select>
+        </div>
+
+         <div class="form-group">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" name="color" type="radio" value="yellow">
+                        Yellow
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" name="color" type="radio" value="green">
+                        Green
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" name="color" type="radio" value="blue">
+                        Blue
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-sm" min="1" name="count" placeholder="Count person" type="number" style="width: 200px;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox1" name="dog" value="+">
+                    <label for="checkbox1">Dog</label><br>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox2" name="cat" value="+">
+                    <label for="checkbox2">Cat</label><br>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox3" name="others" value="+">
+                    <label for="checkbox3">Others</label><br>
+                </div>
+
+            </div>
+           
+
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+
+    <script>
+        document.querySelector('form').onsubmit = function()
+        {
+            if (!document.querySelector('input').value) {
+                alert('You must provide your firstname and lastname!');
+                return false;
+            }
+            else if (!document.querySelector('select').value) {
+                alert('You must provide your car!');
+                return false;
+            }
+            return true;
+        };
+
+    </script>
+
+{% endblock %}
